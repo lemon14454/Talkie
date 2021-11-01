@@ -10,6 +10,9 @@ interface ProviderProps {
   id: string;
 }
 
+const SERVER_URL = "https://talkie-lemon.herokuapp.com";
+// const SERVER_URL = "http://localhost"
+
 const SocketContext = createContext<ContextInterface | null>(null);
 
 export function useSocket() {
@@ -20,7 +23,7 @@ export function SocketProvider({ id, children }: ProviderProps) {
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
-    const newSocket = io("http://localhost:5000", { query: { id } });
+    const newSocket = io(`${SERVER_URL}:5000`, { query: { id } });
     setSocket(newSocket);
     return () => {
       newSocket.close();
