@@ -18,7 +18,10 @@
   "scripts": {
     "start": "node dist/server.js",
     "dev": "nodemon --exec ts-node server/server.ts",
-    "clean": "rm -rf dist"
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "install-client": "cd web && yarn && yarn build",
+    "heroku-postbuild": "YARN_PRODUCTION=false yarn install-client && tsc"
   },
   "author": "",
   "license": "ISC"
