@@ -23,7 +23,7 @@ export function SocketProvider({ id, children }: ProviderProps) {
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
-    const newSocket = io(`${SERVER_URL}:5000`, { query: { id } });
+    const newSocket = io(`${SERVER_URL}`, { query: { id } });
     setSocket(newSocket);
     return () => {
       newSocket.close();
